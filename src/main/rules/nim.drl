@@ -1,0 +1,158 @@
+package org.integrallis.nim
+
+import org.integrallis.nim.Piece;
+import org.integrallis.nim.Turn;
+import org.integrallis.nim.Board;
+import org.integrallis.nim.Outcome;
+import org.integrallis.nim.Outcome.OutcomeType;
+import org.integrallis.nim.Move;
+
+rule "User Moves"
+	when
+		move : Move()
+		board : Board(turn == Turn.HUMAN)
+	then 
+		board.move(move);
+		retract(move);
+		update(board);
+end
+
+rule "BoardWith15PiecesLeft"
+	when
+		board : Board(piecesLeft == 15, turn == Turn.COMPUTER)
+	then 
+		board.remove(Piece.FOURTEEN, Piece.FIFTEEN);
+		update(board);
+end
+
+rule "BoardWith14PiecesLeft"
+	when
+		board : Board(piecesLeft == 14, turn == Turn.COMPUTER)
+	then 
+		board.remove(Piece.FOURTEEN);
+		update(board);
+end
+
+rule "BoardWith13PiecesLeft"
+	when
+		board : Board(piecesLeft == 13, turn == Turn.COMPUTER)
+	then 
+		board.remove(Piece.TWELVE, Piece.THIRTEEN);
+		update(board);
+end
+
+rule "BoardWith12PiecesLeft"
+	when
+		board : Board(piecesLeft == 12, turn == Turn.COMPUTER)
+	then 
+		board.remove(Piece.TEN, Piece.ELEVEN, Piece.TWELVE);
+		update(board);
+end
+
+rule "BoardWith11PiecesLeft"
+	when
+		board : Board(piecesLeft == 11, turn == Turn.COMPUTER)
+	then 
+		board.remove(Piece.TEN, Piece.ELEVEN);
+		update(board);
+end
+
+rule "BoardWith10PiecesLeft"
+	when
+		board : Board(piecesLeft == 10, turn == Turn.COMPUTER)
+	then 
+		board.remove(Piece.TEN);
+		update(board);
+end
+
+rule "BoardWith9PiecesLeft"
+	when
+		board : Board(piecesLeft == 9, turn == Turn.COMPUTER)
+	then 
+		board.remove(Piece.NINE);
+		update(board);
+end
+
+rule "BoardWith8PiecesLeft"
+	when
+		board : Board(piecesLeft == 8, turn == Turn.COMPUTER)
+	then 
+		board.remove(Piece.SIX, Piece.SEVEN, Piece.EIGHT);
+		update(board);
+end
+
+rule "BoardWith7PiecesLeft"
+	when
+		board : Board(piecesLeft == 7, turn == Turn.COMPUTER)
+	then 
+		board.remove(Piece.SIX, Piece.SEVEN);
+		update(board);
+end
+
+rule "BoardWith6PiecesLeft"
+	when
+		board : Board(piecesLeft == 6, turn == Turn.COMPUTER)
+	then 
+		board.remove(Piece.SIX);
+		update(board);
+end
+
+rule "BoardWith5PiecesLeft"
+	when
+		board : Board(piecesLeft == 5, turn == Turn.COMPUTER)
+	then 
+		board.remove(Piece.FIVE);
+		update(board);
+end
+
+rule "BoardWith4PiecesLeft"
+	when
+		board : Board(piecesLeft == 4, turn == Turn.COMPUTER)
+	then 
+		board.remove(Piece.TWO, Piece.THREE, Piece.FOUR);
+		update(board);
+end
+
+rule "BoardWith3PiecesLeft"
+	when
+		board : Board(piecesLeft == 3, turn == Turn.COMPUTER)
+	then 
+		board.remove(Piece.TWO, Piece.THREE);
+		update(board);
+end
+
+rule "BoardWith2PiecesLeft"
+	when
+		board : Board(piecesLeft == 2, turn == Turn.COMPUTER)
+	then 
+		board.remove(Piece.TWO);
+		update(board);
+end
+
+rule "BoardWith1PiecesLeft"
+	when
+		board : Board(piecesLeft == 1, turn == Turn.COMPUTER)
+	then 
+		board.remove(Piece.ONE);
+		update(board);
+end
+
+rule "HumanWins"
+	when
+		board : Board(piecesLeft == 0, turn == Turn.HUMAN)
+	then 
+		System.out.println("Human Wins!");
+		insert(new Outcome(OutcomeType.WIN));
+end
+
+rule "ComputerWins"
+	when
+		board : Board(piecesLeft == 1, turn == Turn.HUMAN)
+	then 
+		System.out.println("Computer Wins!");
+		insert(new Outcome(OutcomeType.LOSE));
+end
+
+query "GetOutcome"
+  outcome : Outcome()
+end
