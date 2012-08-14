@@ -49,7 +49,6 @@ public class Nim {
 				knowledgeSession.fireAllRules();
 			}
 			
-			
 			logger.close();
 		} catch (Throwable t) {
 			t.printStackTrace();

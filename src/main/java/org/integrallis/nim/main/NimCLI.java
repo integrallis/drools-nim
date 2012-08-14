@@ -63,8 +63,8 @@ public class NimCLI {
 
 			while (!quit) {
                 if (!quit) {
-                	input = in.readLine();
-                	quit = input.equals("quit");
+                		input = in.readLine();
+                		quit = input.equals("quit");
                 }
 				if (!quit) {
 					System.out.println("You chose: " + input);
