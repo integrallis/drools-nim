@@ -17,6 +17,39 @@ rule "User Moves"
 		update(board);
 end
 
+rule "TakeThreePieces"
+	when
+		board : Board(
+		    piecesLeft in (12, 8, 4), 
+		    turn == Turn.COMPUTER
+		)
+	then 
+		board.move(Move.TAKE_THREE);
+		update(board);
+end
+
+rule "TakeTwoPieces"
+	when
+		board : Board(
+		    piecesLeft in (15, 13, 11, 13, 7, 3), 
+		    turn == Turn.COMPUTER
+		)
+	then 
+		board.move(Move.TAKE_TWO);
+		update(board);
+end
+
+rule "TakeOnePiece"
+	when
+		board : Board(
+		    piecesLeft in (14, 10, 9, 6, 5, 2), 
+		    turn == Turn.COMPUTER
+		)
+	then 
+		board.move(Move.TAKE_ONE);
+		update(board);
+end
+/*
 rule "BoardWith15PiecesLeft"
 	when
 		board : Board(piecesLeft == 15, turn == Turn.COMPUTER)
@@ -136,7 +169,7 @@ rule "BoardWith1PiecesLeft"
 		board.remove(Piece.ONE);
 		update(board);
 end
-
+*/
 rule "HumanWins"
 	when
 		board : Board(piecesLeft == 0, turn == Turn.HUMAN)
