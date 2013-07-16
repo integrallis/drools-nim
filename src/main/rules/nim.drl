@@ -31,7 +31,7 @@ end
 rule "TakeTwoPieces"
 	when
 		board : Board(
-		    piecesLeft in (15, 13, 11, 13, 7, 3), 
+		    piecesLeft in (15, 13, 11, 7, 3), 
 		    turn == Turn.COMPUTER
 		)
 	then 
