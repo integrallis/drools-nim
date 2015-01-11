@@ -1,13 +1,11 @@
 package org.integrallis.nim;
 
-import static org.integrallis.nim.Move.TAKE_THREE;
-import static org.integrallis.nim.Move.TAKE_TWO;
-import static org.integrallis.nim.Outcome.OutcomeType.LOSE;
-import static org.integrallis.nim.Outcome.OutcomeType.WIN;
+import static org.integrallis.nim.Move.*;
+import static org.integrallis.nim.Outcome.OutcomeType.*;
 import static org.junit.Assert.assertTrue;
 
-import org.drools.runtime.rule.QueryResults;
-import org.drools.runtime.rule.QueryResultsRow;
+import org.kie.api.runtime.rule.QueryResults;
+import org.kie.api.runtime.rule.QueryResultsRow;
 import org.integrallis.drools.junit.BaseDroolsTestCase;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +14,7 @@ import org.junit.Test;
 public class NimTest extends BaseDroolsTestCase {
 
 	public NimTest() {
-		super("nim.drl");
+		super("ksession-rules");
 	}
 	
 	@Before
